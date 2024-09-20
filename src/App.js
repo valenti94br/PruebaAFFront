@@ -1,10 +1,13 @@
 import './App.css';
-import ReportsList from './components/Reports/ReportsList';
+import Reports from './components/Reports/Reports';
+import { GlobalProvider } from './context/GlobalState';
 
 function App() {
   return (
     <div className="App">
-      <ReportsList />
+      <GlobalProvider>
+        <Reports/>
+      </GlobalProvider>
     </div>
   );
 }
