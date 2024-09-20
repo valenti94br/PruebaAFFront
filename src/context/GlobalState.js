@@ -20,11 +20,17 @@ export const GlobalProvider = ({ children }) => {
         });
     };
 
+    const DeleteReport = async (_id)=>{
+        const res = await axios.delete("http://localhost:8080/reports//deleteReportById/" + _id)
+        console.log(res)
+    }
+
     return (
         <GlobalContext.Provider
             value={{
                 reports: state.reports,
                 getReports,
+                DeleteReport
             }}>
             {children}
         </GlobalContext.Provider>
