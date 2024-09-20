@@ -3,7 +3,7 @@ import Report from './Report/Report'
 
 const Reports = () => {
   return (
-    <div>Reports
+    <div>News
       <Report/>
     </div>
   )
