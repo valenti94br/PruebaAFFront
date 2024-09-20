@@ -19,8 +19,13 @@ const Report = () => {
         getReports();
     };
 
-    const activeReports = reports?.filter(report => !report.archived);
-    const archivedReports = reports?.filter(report => report.archived);
+    const activeReports = reports
+        ?.filter(report => !report.archived)
+        ?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        
+    const archivedReports = reports
+        ?.filter(report => report.archived)
+        ?.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
 
     return (
         <div>
