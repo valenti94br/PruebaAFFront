@@ -5,8 +5,22 @@ const reports = (state, action) => {
                 ...state,
                 reports: action.payload,
             };
-            default:
-                return state;
+
+        case "DELETE_REPORT":
+            return {
+                ...state,
+                reports: state.reports.filter(report => report._id !== action.payload._id),
+            };
+        case "ARCHIVE_REPORT":
+            return {
+                ...state,
+                reports: state.reports.map(report =>
+                    report._id === action.payload._id ? action.payload : report
+                ),
+            };
+
+        default:
+            return state;
     }
 };
 export default reports;

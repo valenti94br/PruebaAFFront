@@ -20,17 +20,29 @@ export const GlobalProvider = ({ children }) => {
         });
     };
 
-    const DeleteReport = async (_id)=>{
-        const res = await axios.delete("http://localhost:8080/reports//deleteReportById/" + _id)
-        console.log(res)
+    const deleteReport = async (_id)=>{
+        const res = await axios.delete("http://localhost:8080/reports/deleteReportById/" + _id);
+        dispatch({
+            type: "DELETE_REPORT",
+            payload: res.data.report,
+        });
     }
+
+    const archiveReport = async (_id) => {
+        const res = await axios.put("http://localhost:8080/reports/updateReportById/" + _id);
+        dispatch({
+            type: "ARCHIVE_REPORT",
+            payload: res.data.report,
+        });
+    };
 
     return (
         <GlobalContext.Provider
             value={{
                 reports: state.reports,
                 getReports,
-                DeleteReport
+                deleteReport,
+                archiveReport
             }}>
             {children}
         </GlobalContext.Provider>
